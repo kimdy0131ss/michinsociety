@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>중3 사회 기말고사 · 학습 앱</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">중3 사회 기말<span>content.md 기반 · 13개 단원</span></div>
+    <div class="top-actions">
+      <button class="btn ghost" id="theme-btn">다크 모드</button>
+      <button class="btn ghost" id="btn-reset">기록 초기화</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" data-tab="content" aria-selected="true">학습자료</button>
+    <button class="tab" role="tab" data-tab="cards" aria-selected="false">플래시카드</button>
+    <button class="tab" role="tab" data-tab="quiz" aria-selected="false">모의고사</button>
+  </nav>
+
+  <!-- 학습자료 -->
+  <section class="panel on" id="panel-content">
+    <div id="toc-view">
+      <div class="unit-head">
+        <h2>단원 전체 보기</h2>
+        <span class="back">아래 단원을 누르면 본문으로 들어간다.</span>
+      </div>
+      <div class="toc" id="toc"></div>
+    </div>
+
+    <div id="unit-view" hidden>
+      <div class="unit-head" id="unit-head">
+        <h2></h2>
+        <span class="back back-link" id="unit-back"></span>
+      </div>
+      <div id="unit-body"></div>
+    </div>
+  </section>
+
+  <!-- 플래시카드 -->
+  <section class="panel" id="panel-cards">
+    <div class="bar">
+      <label for="card-unit">단원</label>
+      <select id="card-unit">
+        <option value="all">전체</option>
+      </select>
+
+      <label for="card-mode">범위</label>
+      <select id="card-mode">
+        <option value="due">due (복습 예정)</option>
+        <option value="all">전체</option>
+        <option value="new">new (신규)</option>
+        <option value="wrong">오답 카드</option>
+        <option value="mastered">mastered</option>
+      </select>
+
+      <button class="btn primary" id="btn-card-start">드릴 시작</button>
+    </div>
+
+    <div class="stat-row" id="card-stats"></div>
+
+    <p class="hint" id="card-progress"></p>
+
+    <div class="card" id="card-none" hidden>
+      <p class="hint">조건에 맞는 카드가 없다. 범위를 "전체"로 바꾸거나 카드를 더 만들어 보자.</p>
+    </div>
+
+    <div class="card" id="card-body" hidden>
+      <div class="meta" id="card-meta"></div>
+      <p class="q" id="card-q"></p>
+      <div class="a hidden" id="card-a"></div>
+      <div class="note hidden" id="card-note"></div>
+      <div class="bar" style="margin:14px 0 0">
+        <button class="btn primary" id="btn-reveal">정답 보기</button>
+        <button class="btn" id="btn-right">맞았다</button>
+        <button class="btn" id="btn-wrong">틀렸다</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 모의고사 -->
+  <section class="panel" id="panel-quiz">
+    <div class="bar">
+      <label for="quiz-unit">단원</label>
+      <select id="quiz-unit">
+        <option value="all">전체</option>
+      </select>
+
+      <label for="quiz-type">유형</label>
+      <select id="quiz-type">
+        <option value="mixed">섞어서 (O·X + 5지선다 + 주관식 + 서술)</option>
+        <option value="mc">5지선다</option>
+        <option value="ox">O · X</option>
+        <option value="short">주관식</option>
+        <option value="essay">서술형</option>
+      </select>
+
+      <label for="quiz-count">문항</label>
+      <input id="quiz-count" type="number" min="1" max="30" value="9" style="width:70px">
+
+      <button class="btn primary" id="btn-quiz-start">시험 시작</button>
+      <button class="btn ghost" id="btn-wrong-only">오답만 다시 풀기</button>
+    </div>
+
+    <div id="quiz-stage"></div>
+    <div id="quiz-history" style="margin-top:28px"></div>
+  </section>
+
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
